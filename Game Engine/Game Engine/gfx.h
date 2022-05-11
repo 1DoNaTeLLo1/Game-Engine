@@ -15,6 +15,7 @@ public:
 	void SetColor(float red, float green, float blue, float alpha = 1.F);
 	void Clear();
 	void Update();
+	void DrawPoint(float x, float y);
 
 private:
 	SDL_Window *mainWindow;
