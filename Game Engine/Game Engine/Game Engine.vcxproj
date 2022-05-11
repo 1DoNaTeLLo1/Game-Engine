@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="gfx.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="app.cpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="app.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="gameObject.h" />
     <ClInclude Include="gfx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
