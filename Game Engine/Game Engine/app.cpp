@@ -75,9 +75,6 @@ void App::Render()
 		this->objects->Get(i).Render(this->gfx);
 	}
 
-	this->gfx->SetColor(1.F, 0.F, 0.F);
-	this->gfx->DrawFillRect(.1F, .1F, .8F, .8F);
-
 	this->gfx->Update();
 }
 
