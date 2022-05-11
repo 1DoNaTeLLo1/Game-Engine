@@ -156,6 +156,7 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gfx.h" />
+    <ClInclude Include="list.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
