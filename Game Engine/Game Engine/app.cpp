@@ -6,7 +6,7 @@ App::App()
 
 	if (this->gfx == nullptr || !this->gfx->IsInitialised())
 	{
-		std::cout << "Graphics could not initialize!" << std::endl;
+		std::cout << "Graphics could not be initialised!" << std::endl;
 		this->Quit();
 	}
 
