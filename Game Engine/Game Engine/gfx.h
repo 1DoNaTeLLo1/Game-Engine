@@ -22,6 +22,8 @@ private:
 	SDL_Renderer *renderer;
 	bool isInitialised;
 	Color *color;
+
+	void WorldToPixels(float x, float y, int *pixelX, int *pixelY);
 };
 
 #endif

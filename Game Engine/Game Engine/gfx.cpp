@@ -69,15 +69,20 @@ void Gfx::Update()
 
 void Gfx::DrawPoint(float x, float y)
 {
+	int pixelX, pixelY;
+	WorldToPixels(x, y, &pixelX, &pixelY);
+
+	SDL_SetRenderDrawColor(this->renderer, this->color->GetRedInt(), this->color->GetGreenInt(), this->color->GetBlueInt(), this->color->GetAlphaInt());
+	SDL_RenderDrawPoint(this->renderer, pixelX, pixelY);
+}
+
+void Gfx::WorldToPixels(float x, float y, int* pixelX, int* pixelY)
+{
 	int windowWidth, windowHeight;
 	SDL_GetWindowSize(this->mainWindow, &windowWidth, &windowHeight);
 	windowWidth--;
 	windowHeight--;
-	
-	int screenX = (int)(x * (float)windowWidth);
-	int screenY = (int)(y * (float)windowHeight);
-	std::cout << screenX << " - " << screenY << std::endl;
 
-	SDL_SetRenderDrawColor(this->renderer, this->color->GetRedInt(), this->color->GetGreenInt(), this->color->GetBlueInt(), this->color->GetAlphaInt());
-	SDL_RenderDrawPoint(this->renderer, screenX, screenY);
+	*pixelX = (int)(x * (float)windowWidth);
+	*pixelY = (int)(y * (float)windowHeight);
 }
