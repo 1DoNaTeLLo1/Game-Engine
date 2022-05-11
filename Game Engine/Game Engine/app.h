@@ -11,10 +11,14 @@ public:
 	App();
 	~App();
 	void Run();
-	void Quit();
 
 private:
 	Gfx* gfx;
+
+	void Input();
+	void Update();
+	void Render();
+	void Quit();
 };
 
 #endif

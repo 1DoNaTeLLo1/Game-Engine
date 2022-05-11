@@ -23,29 +23,40 @@ void App::Run()
 {
 	while (true)
 	{
-		SDL_Event e;
-		//Handle events on queue
-		while (SDL_PollEvent(&e) != 0)
-		{
-			//User requests quit
-			if (e.type == SDL_QUIT)
-			{
-				this->Quit();
-			}
-		}
-
-		//Clear screen
-		this->gfx->SetColor(0.F, 0.F, 0.F);
-		this->gfx->Clear();
-
-		//Update screen
-		this->gfx->Update();
+		this->Input();
+		this->Update();
+		this->Render();
 	}
+}
+
+void App::Input()
+{
+	SDL_Event e;
+
+	while (SDL_PollEvent(&e) != 0)
+	{
+		if (e.type == SDL_QUIT)
+		{
+			this->Quit();
+		}
+	}
+}
+
+void App::Update()
+{
+
+}
+
+void App::Render()
+{
+	this->gfx->SetColor(0.F, 0.F, 0.F);
+	this->gfx->Clear();
+
+	this->gfx->Update();
 }
 
 void App::Quit()
 {
-	//Quit SDL subsystems
 	SDL_Quit();
 	exit(0);
 }
