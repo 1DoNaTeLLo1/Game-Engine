@@ -9,12 +9,17 @@ App::App()
 		std::cout << "Graphics could not initialize!" << std::endl;
 		this->Quit();
 	}
+
+	this->objects = new List<GameObject>();
 }
 
 App::~App()
 {
 	delete this->gfx;
 	this->gfx = nullptr;
+
+	delete this->objects;
+	this->objects = nullptr;
 
 	this->Quit();
 }
@@ -29,12 +34,22 @@ void App::Run()
 	}
 }
 
+void App::AddObject(GameObject* object)
+{
+	this->objects->Insert(*object);
+}
+
 void App::Input()
 {
 	SDL_Event e;
 
 	while (SDL_PollEvent(&e) != 0)
 	{
+		for (unsigned int i = 0; i < this->objects->Size(); i++)
+		{
+			this->objects->Get(i).Input(&e);
+		}
+
 		if (e.type == SDL_QUIT)
 		{
 			this->Quit();
@@ -44,13 +59,21 @@ void App::Input()
 
 void App::Update()
 {
-
+	for (unsigned int i = 0; i < this->objects->Size(); i++)
+	{
+		this->objects->Get(i).Update(0.00001F);
+	}
 }
 
 void App::Render()
 {
 	this->gfx->SetColor(0.F, 0.F, 0.F);
 	this->gfx->Clear();
+
+	for (unsigned int i = 0; i < this->objects->Size(); i++)
+	{
+		this->objects->Get(i).Render(this->gfx);
+	}
 
 	this->gfx->Update();
 }

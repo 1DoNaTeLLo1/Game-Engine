@@ -5,6 +5,7 @@ template <typename T> class List
 {
 public:
 	List();
+	~List();
 	void Insert(T data);
 	T Get(unsigned int index);
 	unsigned int Size();
@@ -30,6 +31,16 @@ private:
 template <typename T> List<T>::List()
 {
 	this->head = nullptr;
+}
+
+template <typename T> List<T>::~List()
+{
+	while (this->head != nullptr)
+	{
+		Node* next = this->head->GetNext();
+		delete this->head;
+		this->head = next;
+	}
 }
 
 template <typename T> void List<T>::Insert(T data)
