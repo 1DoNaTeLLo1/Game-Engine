@@ -1,6 +1,6 @@
 #include "gfx.h"
 
-Gfx::Gfx()
+Gfx::Gfx(int windowWidth, int windowHeight)
 {
 	this->isInitialised = true;
 
@@ -10,7 +10,7 @@ Gfx::Gfx()
 		this->isInitialised = false;
 	}
 
-	this->mainWindow = SDL_CreateWindow("Application", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 500, SDL_WINDOW_SHOWN);
+	this->mainWindow = SDL_CreateWindow("Application", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
 	if (this->mainWindow == NULL)
 	{
 		std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;

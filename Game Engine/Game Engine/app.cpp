@@ -2,7 +2,7 @@
 
 App::App()
 {
-	this->gfx = new Gfx();
+	this->gfx = new Gfx(500, 500);
 
 	if (this->gfx == nullptr || !this->gfx->IsInitialised())
 	{
