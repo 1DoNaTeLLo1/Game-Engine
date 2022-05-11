@@ -16,6 +16,9 @@ public:
 	void Clear();
 	void Update();
 	void DrawPoint(float x, float y);
+	void DrawLine(float x0, float y0, float x1, float y1);
+	void DrawRect(float x, float y, float width, float height);
+	void DrawFillRect(float x, float y, float width, float height);
 
 private:
 	SDL_Window *mainWindow;

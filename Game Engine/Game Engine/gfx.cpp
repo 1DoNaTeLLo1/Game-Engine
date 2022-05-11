@@ -76,6 +76,48 @@ void Gfx::DrawPoint(float x, float y)
 	SDL_RenderDrawPoint(this->renderer, pixelX, pixelY);
 }
 
+void Gfx::DrawLine(float x0, float y0, float x1, float y1)
+{
+	int pixelX0, pixelY0, pixelX1, pixelY1;
+	this->WorldToPixels(x0, y0, &pixelX0, &pixelY0);
+	this->WorldToPixels(x1, y1, &pixelX1, &pixelY1);
+
+	SDL_SetRenderDrawColor(this->renderer, this->color->GetRedInt(), this->color->GetGreenInt(), this->color->GetBlueInt(), this->color->GetAlphaInt());
+	SDL_RenderDrawLine(this->renderer, pixelX0, pixelY0, pixelX1, pixelY1);
+}
+
+void Gfx::DrawRect(float x, float y, float width, float height)
+{
+	int pixelX, pixelY, pixelWidth, pixelHeight;
+	this->WorldToPixels(x, y, &pixelX, &pixelY);
+	this->WorldToPixels(width, height, &pixelWidth, &pixelHeight);
+
+	SDL_Rect rect;
+	rect.x = pixelX;
+	rect.y = pixelY;
+	rect.w = pixelWidth;
+	rect.h = pixelHeight;
+
+	SDL_SetRenderDrawColor(this->renderer, this->color->GetRedInt(), this->color->GetGreenInt(), this->color->GetBlueInt(), this->color->GetAlphaInt());
+	SDL_RenderDrawRect(this->renderer, &rect);
+}
+
+void Gfx::DrawFillRect(float x, float y, float width, float height)
+{
+	int pixelX, pixelY, pixelWidth, pixelHeight;
+	this->WorldToPixels(x, y, &pixelX, &pixelY);
+	this->WorldToPixels(width, height, &pixelWidth, &pixelHeight);
+
+	SDL_Rect rect;
+	rect.x = pixelX;
+	rect.y = pixelY;
+	rect.w = pixelWidth;
+	rect.h = pixelHeight;
+
+	SDL_SetRenderDrawColor(this->renderer, this->color->GetRedInt(), this->color->GetGreenInt(), this->color->GetBlueInt(), this->color->GetAlphaInt());
+	SDL_RenderFillRect(this->renderer, &rect);
+}
+
 void Gfx::WorldToPixels(float x, float y, int* pixelX, int* pixelY)
 {
 	int windowWidth, windowHeight;
