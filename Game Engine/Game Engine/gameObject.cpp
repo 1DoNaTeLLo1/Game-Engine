@@ -1,16 +1,16 @@
 #include "gameObject.h"
 
-void GameObject::Input()
+void GameObject::Input(SDL_Event* e)
 {
 
 }
 
-void GameObject::Render()
+void GameObject::Update(float deltaTime)
 {
 
 }
 
-void GameObject::Update()
+void GameObject::Render(Gfx* gfx)
 {
 
 }
