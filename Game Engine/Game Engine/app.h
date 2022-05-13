@@ -3,9 +3,10 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <string>
 #include "gfx.h"
 #include "gameObject.h"
-#include "list.h"
+#include "dict.h"
 
 class App
 {
@@ -13,11 +14,11 @@ public:
 	App();
 	~App();
 	void Run();
-	void AddObject(GameObject *object);
+	void AddObject(std::string name, GameObject *object);
 
 private:
 	Gfx* gfx;
-	List<GameObject*>* objects;
+	Dict<std::string, GameObject*>* objects;
 
 	void Input();
 	void Update();

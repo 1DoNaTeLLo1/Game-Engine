@@ -78,14 +78,19 @@ template<typename T, typename U> void Dict<T, U>::Insert(T key, U data)
 
 template<typename T, typename U> void Dict<T, U>::Remove(T key)
 {
-	for (Node* current = head, Node* prev = nullptr; current != nullptr; prev = current, current = current->GetNext())
+	Node* current = this->head;
+	Node * prev = current;
+	while (current != nullptr)
 	{
-		if (current->Get(Key) == key)
+		if (current->GetKey() == key)
 		{
 			prev->SetNext(current->GetNext());
 			delete current;
 			return;
 		}
+
+		prev = current;
+		current = current->GetNext();
 	}
 
 	std::cerr << "Error! Dictionary has not this key value!" << std::endl;
@@ -96,7 +101,7 @@ template<typename T, typename U> U Dict<T, U>::Get(T key)
 {
 	for (Node* current = head; current != nullptr; current = current->GetNext())
 	{
-		if (current->Get(Key) == key)
+		if (current->GetKey() == key)
 		{
 			return current->GetData();
 		}
@@ -108,7 +113,11 @@ template<typename T, typename U> U Dict<T, U>::Get(T key)
 
 template<typename T, typename U> U Dict<T, U>::Get(int index)
 {
-	for (int i = 0, Node* current = this->head; i < index; i++, current = current.GetNext());
+	Node* current = this->head;
+	for (int i = 0; i < index; i++)
+	{
+		current = current->GetNext();
+	}
 
 	if (current == nullptr)
 	{
@@ -116,7 +125,7 @@ template<typename T, typename U> U Dict<T, U>::Get(int index)
 		exit(-1);
 	}
 
-	return current.GetData();
+	return current->GetData();
 }
 
 template<typename T, typename U> Dict<T, U>::Node::Node(T key, U data, Node* next)
@@ -151,7 +160,7 @@ template<typename T, typename U> void Dict<T, U>::Node::SetNext(Node* next)
 	this->next = next;
 }
 
-template<typename T, typename U> Dict<T, U>::Node* Dict<T, U>::Node::GetNext()
+template<typename T, typename U> typename Dict<T, U>::Node* Dict<T, U>::Node::GetNext()
 {
 	return this->next;
 }

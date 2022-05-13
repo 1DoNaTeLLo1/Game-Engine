@@ -10,13 +10,20 @@ App::App()
 		this->Quit();
 	}
 
-	this->objects = new List<GameObject*>();
+	this->objects = new Dict<std::string, GameObject*>();
 }
 
 App::~App()
 {
 	delete this->gfx;
 	this->gfx = nullptr;
+
+	for (int i = 0; i < this->objects->Size(); i++)
+	{
+		GameObject* object = this->objects->Get(i);
+		delete object;
+		object = nullptr;
+	}
 
 	delete this->objects;
 	this->objects = nullptr;
@@ -34,9 +41,9 @@ void App::Run()
 	}
 }
 
-void App::AddObject(GameObject* object)
+void App::AddObject(std::string name, GameObject* object)
 {
-	this->objects->Insert(object);
+	this->objects->Insert(name, object);
 }
 
 void App::Input()
@@ -45,7 +52,7 @@ void App::Input()
 
 	while (SDL_PollEvent(&e) != 0)
 	{
-		for (unsigned int i = 0; i < this->objects->Size(); i++)
+		for (int i = 0; i < this->objects->Size(); i++)
 		{
 			this->objects->Get(i)->Input(&e);
 		}
@@ -59,7 +66,7 @@ void App::Input()
 
 void App::Update()
 {
-	for (unsigned int i = 0; i < this->objects->Size(); i++)
+	for (int i = 0; i < this->objects->Size(); i++)
 	{
 		this->objects->Get(i)->Update(0.00001F);
 	}
@@ -70,7 +77,7 @@ void App::Render()
 	this->gfx->SetColor(0.F, 0.F, 0.F);
 	this->gfx->Clear();
 
-	for (unsigned int i = 0; i < this->objects->Size(); i++)
+	for (int i = 0; i < this->objects->Size(); i++)
 	{
 		this->objects->Get(i)->Render(this->gfx);
 	}
