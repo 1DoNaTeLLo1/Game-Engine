@@ -25,6 +25,7 @@ Gfx::Gfx(int windowWidth, int windowHeight)
 	}
 
 	this->color = new Color();
+	this->fpsTimer = new Timer();
 }
 
 Gfx::~Gfx()
@@ -118,6 +119,20 @@ void Gfx::DrawFillRect(float x, float y, float width, float height)
 	SDL_RenderFillRect(this->renderer, &rect);
 }
 
+float Gfx::Vsync(int fps)
+{
+	float deltaTime = this->fpsTimer->Tick();
+	float expectedDeltaTime = 1.F / (float)fps;
+
+	if (expectedDeltaTime > deltaTime)
+	{
+		float waitTime = expectedDeltaTime - deltaTime;
+		this->Delay(waitTime);
+	}
+
+	return expectedDeltaTime;
+}
+
 void Gfx::WorldToPixels(float x, float y, int* pixelX, int* pixelY)
 {
 	int windowWidth, windowHeight;
@@ -127,4 +142,18 @@ void Gfx::WorldToPixels(float x, float y, int* pixelX, int* pixelY)
 
 	*pixelX = (int)(x * (float)windowWidth);
 	*pixelY = (int)(y * (float)windowHeight);
+}
+
+void Gfx::Delay(float seconds)
+{
+	Timer* timer = new Timer();
+	float passedTime = 0.F;
+
+	while (passedTime < seconds)
+	{
+		passedTime += timer->Tick();
+	}
+
+	delete timer;
+	timer = nullptr;
 }

@@ -7,7 +7,7 @@ class Timer
 {
 public:
 	Timer();
-	clock_t Tick();
+	float Tick();
 
 private:
 	clock_t time;

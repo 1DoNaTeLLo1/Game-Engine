@@ -66,9 +66,11 @@ void App::Input()
 
 void App::Update()
 {
+	float deltaTime =  this->gfx->Vsync();
+
 	for (int i = 0; i < this->objects->Size(); i++)
 	{
-		this->objects->Get(i)->Update(0.00001F);
+		this->objects->Get(i)->Update(deltaTime);
 	}
 }
 

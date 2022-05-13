@@ -5,10 +5,10 @@ Timer::Timer()
 	this->time = clock();
 }
 
-clock_t Timer::Tick()
+float Timer::Tick()
 {
 	clock_t now = clock();
 	clock_t deltaTime = now - this->time;
 	time = now;
-	return deltaTime;
+	return (float)deltaTime / (float)CLOCKS_PER_SEC;
 }
