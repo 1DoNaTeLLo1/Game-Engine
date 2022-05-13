@@ -30,7 +30,6 @@ private:
 	Timer* fpsTimer;
 
 	void WorldToPixels(float x, float y, int *pixelX, int *pixelY);
-	void Delay(float seconds);
 };
 
 #endif

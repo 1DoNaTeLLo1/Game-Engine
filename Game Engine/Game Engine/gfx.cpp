@@ -127,7 +127,7 @@ float Gfx::Vsync(int fps)
 	if (expectedDeltaTime > deltaTime)
 	{
 		float waitTime = expectedDeltaTime - deltaTime;
-		this->Delay(waitTime);
+		SDL_Delay((unsigned int)(waitTime * 1000.F));
 	}
 
 	return expectedDeltaTime;
@@ -142,18 +142,4 @@ void Gfx::WorldToPixels(float x, float y, int* pixelX, int* pixelY)
 
 	*pixelX = (int)(x * (float)windowWidth);
 	*pixelY = (int)(y * (float)windowHeight);
-}
-
-void Gfx::Delay(float seconds)
-{
-	Timer* timer = new Timer();
-	float passedTime = 0.F;
-
-	while (passedTime < seconds)
-	{
-		passedTime += timer->Tick();
-	}
-
-	delete timer;
-	timer = nullptr;
 }
