@@ -150,6 +150,7 @@
     <ClCompile Include="gfx.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="app.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gfx.h" />
     <ClInclude Include="list.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
