@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="app.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="dict.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gfx.h" />
     <ClInclude Include="list.h" />
