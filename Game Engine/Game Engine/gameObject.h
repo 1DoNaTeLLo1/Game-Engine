@@ -7,9 +7,9 @@
 class GameObject
 {
 public:
-	void Input(SDL_Event *e);
-	void Update(float deltaTime);
-	void Render(Gfx* gfx);
+	virtual void Input(SDL_Event *e);
+	virtual void Update(float deltaTime);
+	virtual void Render(Gfx* gfx);
 };
 
 #endif

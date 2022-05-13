@@ -10,7 +10,7 @@ App::App()
 		this->Quit();
 	}
 
-	this->objects = new List<GameObject>();
+	this->objects = new List<GameObject*>();
 }
 
 App::~App()
@@ -36,7 +36,7 @@ void App::Run()
 
 void App::AddObject(GameObject* object)
 {
-	this->objects->Insert(*object);
+	this->objects->Insert(object);
 }
 
 void App::Input()
@@ -47,7 +47,7 @@ void App::Input()
 	{
 		for (unsigned int i = 0; i < this->objects->Size(); i++)
 		{
-			this->objects->Get(i).Input(&e);
+			this->objects->Get(i)->Input(&e);
 		}
 
 		if (e.type == SDL_QUIT)
@@ -61,7 +61,7 @@ void App::Update()
 {
 	for (unsigned int i = 0; i < this->objects->Size(); i++)
 	{
-		this->objects->Get(i).Update(0.00001F);
+		this->objects->Get(i)->Update(0.00001F);
 	}
 }
 
@@ -72,7 +72,7 @@ void App::Render()
 
 	for (unsigned int i = 0; i < this->objects->Size(); i++)
 	{
-		this->objects->Get(i).Render(this->gfx);
+		this->objects->Get(i)->Render(this->gfx);
 	}
 
 	this->gfx->Update();

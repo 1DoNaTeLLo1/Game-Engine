@@ -17,7 +17,7 @@ public:
 
 private:
 	Gfx* gfx;
-	List<GameObject>* objects;
+	List<GameObject*>* objects;
 
 	void Input();
 	void Update();
