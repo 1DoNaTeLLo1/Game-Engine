@@ -3,13 +3,14 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <string>
 #include "color.h"
 #include "timer.h"
 
 class Gfx
 {
 public:
-	Gfx(int windowWidth, int windowHeight);
+	Gfx(int windowWidth, int windowHeight, std::string caption = "Application");
 	~Gfx();
 	bool IsInitialised();
 	Color GetColor();
@@ -21,6 +22,13 @@ public:
 	void DrawRect(float x, float y, float width, float height);
 	void DrawFillRect(float x, float y, float width, float height);
 	float Vsync(int fps = 60);
+	void SetWindowSize(int width, int height);
+	void GetWindowSize(int* width, int* height);
+	void CenterWindow();
+	void GetWindowPos(int* x, int* y);
+	void SetWindowPos(int x, int y);
+	std::string GetWindowTitle();
+	void SetWindowTitle(std::string title);
 
 private:
 	SDL_Window *mainWindow;

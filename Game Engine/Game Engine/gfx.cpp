@@ -1,6 +1,6 @@
 #include "gfx.h"
 
-Gfx::Gfx(int windowWidth, int windowHeight)
+Gfx::Gfx(int windowWidth, int windowHeight, std::string caption)
 {
 	this->isInitialised = true;
 
@@ -10,7 +10,7 @@ Gfx::Gfx(int windowWidth, int windowHeight)
 		this->isInitialised = false;
 	}
 
-	this->mainWindow = SDL_CreateWindow("Application", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
+	this->mainWindow = SDL_CreateWindow(caption.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
 	if (this->mainWindow == NULL)
 	{
 		std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;
@@ -131,6 +131,41 @@ float Gfx::Vsync(int fps)
 	}
 
 	return expectedDeltaTime;
+}
+
+void Gfx::SetWindowSize(int width, int height)
+{
+	SDL_SetWindowSize(this->mainWindow, width, height);
+}
+
+void Gfx::GetWindowSize(int* width, int* height)
+{
+	SDL_GetWindowSize(this->mainWindow, width, height);
+}
+
+void Gfx::CenterWindow()
+{
+	SDL_SetWindowPosition(this->mainWindow, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+}
+
+void Gfx::GetWindowPos(int* x, int* y)
+{
+	SDL_GetWindowPosition(this->mainWindow, x, y);
+}
+
+void Gfx::SetWindowPos(int x, int y)
+{
+	SDL_SetWindowPosition(this->mainWindow, x, y);
+}
+
+std::string Gfx::GetWindowTitle()
+{
+	return SDL_GetWindowTitle(this->mainWindow);
+}
+
+void Gfx::SetWindowTitle(std::string title)
+{
+	SDL_SetWindowTitle(this->mainWindow, title.c_str());
 }
 
 void Gfx::WorldToPixels(float x, float y, int* pixelX, int* pixelY)
